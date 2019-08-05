@@ -32,7 +32,34 @@ task runGui(type: JavaExec) {
 task runContainer(type: JavaExec) {
     dependsOn compileJava
 
+    onlyIf {
+        return project.hasProperty('shops') && project.hasProperty('consumers')
+    }
+
     main "jade.Boot"
     classpath = sourceSets.main.runtimeClasspath
-    args('‒container', project.property("agents"))
+
+    final StringBuilder builder = new StringBuilder()
+    final int numberOfShops = Integer.parseInt((String) project.shops)
+    for (int i = 1; i <= numberOfShops; i++) {
+        builder.append("shop" + i + ":" + "tomida.agents.ShopAgent;")
+        builder.append("spy" + i + ":" + "tomida.agents.SpyAgent;")
+    }
+
+    final int numberOfConsumers = Integer.parseInt((String) project.consumers)
+    for (int i = 1; i <= numberOfConsumers; i++) {
+        builder.append("customer" + i + ":" + "tomida.agents.ConsumerAgent;")
+    }
+
+    if (builder.length() > 0) {
+        builder.setLength(builder.length() - 1)
+    }
+    println builder.toString()
+//
+//    numberOfShopAgents =
+//            project.hasProperty('tomida.agents') ? project.get
+//
+//    if (project.hasProperty('tomida.agents')) {    // "args" というプロパティが渡されていたら
+    args('-container', builder.toString())
+//    }
 }
