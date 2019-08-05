@@ -14,8 +14,8 @@ import tomida.behaviours.ReceiveReport;
 public class ShopAgent extends Agent {
 
   private int price = 100;
-  private int yesterdayCustomerCount = 0;
-  private int customerCounter = 0;
+  private int yesterdayConsumerCount = 0;
+  private int consumerCounter = 0;
 
   private static final int COST = 100;
   private final Random random = new Random(System.nanoTime());
@@ -42,7 +42,7 @@ public class ShopAgent extends Agent {
     parallelBehaviour.addSubBehaviour(new DelayBehaviour(this, 2000) {
       @Override
       protected void handleElapsedTimeout() {
-        if (yesterdayCustomerCount > customerCounter) {
+        if (yesterdayConsumerCount > consumerCounter) {
           // 来店数が少ないときは来店数を増やして利益を得るために
           // ライバルよりも低く設定する
           shopToPrice.entrySet()
@@ -62,8 +62,8 @@ public class ShopAgent extends Agent {
               myAgent.getLocalName(),
               price);
         }
-        yesterdayCustomerCount = customerCounter;
-        customerCounter = 0;
+        yesterdayConsumerCount = consumerCounter;
+        consumerCounter = 0;
         reset(timeout);
       }
 
@@ -75,11 +75,11 @@ public class ShopAgent extends Agent {
   }
 
   public int getCount() {
-    return customerCounter;
+    return consumerCounter;
   }
 
   public void incrementCounter() {
-    customerCounter++;
+    consumerCounter++;
   }
 
   public int getPrice() {
