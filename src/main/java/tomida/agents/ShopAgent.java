@@ -18,7 +18,7 @@ public class ShopAgent extends Agent {
   private int consumerCounter = 0;
 
   private static final int COST = 100;
-  private final Random random = new Random(System.nanoTime());
+  private final Random random = new Random((int) (Math.random() * 100));
   private final Map<String, Integer> shopToPrice = new HashMap<>();
 
   @Override

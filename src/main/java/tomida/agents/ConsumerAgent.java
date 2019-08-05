@@ -18,7 +18,8 @@ import tomida.behaviours.SearchBestShop;
 
 public class ConsumerAgent extends Agent {
 
-  private final Random random = new Random(System.currentTimeMillis());
+  private final Random random
+      = new Random(System.currentTimeMillis() + toString().hashCode());
   private int bestPrice = 10000;
   private ACLMessage bestResponse = null;
 
@@ -95,7 +96,7 @@ public class ConsumerAgent extends Agent {
     final List<Integer> uniqueNumbers = IntStream.rangeClosed(1, size)
         .boxed()
         .collect(Collectors.toList());
-    Collections.shuffle(uniqueNumbers, new Random(System.nanoTime()));
+    Collections.shuffle(uniqueNumbers, random);
 
     // プリミティブintに変換してから配列に変換
     return uniqueNumbers.stream()
