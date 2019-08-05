@@ -42,6 +42,7 @@ public class ConsumerAgent extends Agent {
 
     // いくつかの店で値段をチェックする
     // 訪問する順は毎回ランダム
+    int counter = 0;
     for (final int i : generateRandomUniqueNumbers(numberOfShop)) {
       // チェックにかかる時間
       final long timeout = (long) (random.nextInt(10 * i) + 10);
@@ -55,8 +56,8 @@ public class ConsumerAgent extends Agent {
       };
       sequentialBehaviour.addSubBehaviour(new PriceRequest(this, timeout, afterTimeout));
 
-      // (30 + 10*i)%でやめる
-      if (random.nextInt(10) < 3 + i) {
+      // (30 + 10*counter)%でやめる
+      if (random.nextInt(10) < 3 + counter) {
         break;
       }
     }
