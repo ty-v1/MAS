@@ -23,7 +23,7 @@ public class ShopAgent extends Agent {
 
   @Override
   protected void setup() {
-    price = (random.nextInt(500) + 100) + COST;
+    price = (random.nextInt(250) + 250) + COST;
 
     // 商品価格の回答と来店数のカウントを並列に処理する
     final ParallelBehaviour parallelBehaviour = new ParallelBehaviour(ParallelBehaviour.WHEN_ALL);
