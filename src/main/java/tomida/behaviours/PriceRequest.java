@@ -33,7 +33,7 @@ public class PriceRequest extends DelayBehaviour {
     final int price = Integer.parseInt(response.getContent());
     final String shopName = response.getSender()
         .getLocalName();
-    System.out.printf("[%s] got price $%d from %s",
+    System.out.printf("[%s] got price $%d from %s\n",
         myAgent.getLocalName(),
         price,
         shopName

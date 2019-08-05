@@ -28,7 +28,7 @@ public class ReceiveReport extends CyclicBehaviour {
       final String spyName = message.getSender()
           .getLocalName();
 
-      System.out.printf("[%s] report from %s (%s: %d)",
+      System.out.printf("[%s] report from %s (%s: %d)\n",
           agent.getLocalName(),
           spyName,
           report[0],

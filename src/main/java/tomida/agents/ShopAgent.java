@@ -53,12 +53,12 @@ public class ShopAgent extends Agent {
               .min()
               .ifPresent(min -> setPrice(min - random.nextInt(9) - 1));
 
-          System.err.printf("[%s] new price $%d",
+          System.err.printf("[%s] new price $%d\n",
               myAgent.getLocalName(),
               price);
         } else {
           // 来店数が増えた時は利益を維持するために何もしない
-          System.err.printf("[%s] does not change price $%d",
+          System.err.printf("[%s] does not change price $%d\n",
               myAgent.getLocalName(),
               price);
         }
