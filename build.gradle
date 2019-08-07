@@ -40,13 +40,15 @@ task runContainer(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
 
     final StringBuilder builder = new StringBuilder()
-    final int numberOfShops = Integer.parseInt((String) project.shops)
+    final int numberOfShops = project.hasProperty('shops')
+            ? Integer.parseInt((String) project.shops) : 1
     for (int i = 1; i <= numberOfShops; i++) {
         builder.append("shop" + i + ":" + "tomida.agents.ShopAgent;")
         builder.append("spy" + i + ":" + "tomida.agents.SpyAgent;")
     }
 
-    final int numberOfConsumers = Integer.parseInt((String) project.consumers)
+    final int numberOfConsumers = project.hasProperty('consumers')
+            ? Integer.parseInt((String) project.consumers) : 1
     for (int i = 1; i <= numberOfConsumers; i++) {
         builder.append("customer" + i + ":" + "tomida.agents.ConsumerAgent;")
     }
