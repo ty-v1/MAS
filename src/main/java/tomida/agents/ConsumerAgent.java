@@ -60,6 +60,7 @@ public class ConsumerAgent extends Agent {
       if (random.nextInt(10) < 3 + counter) {
         break;
       }
+      counter++;
     }
 
     // ゴミ掃除
